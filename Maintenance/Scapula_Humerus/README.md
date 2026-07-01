@@ -96,5 +96,36 @@ autoseg_pipeline.py
 
 <br>
 
+# - 7/1 CT Sort Issue
+
+```
+Caused by sorting with dicom file number
+```
+
+## - Solution
+
+```
+dicom file 이름의 숫자 순서가 아닌 tag 정보로부터 patientinstancenumber를 기준으로 정렬하도록 함.
+```
+
+<br>
+
+# - 7/1 Axis Reverse by Affine Matrix
+
+## - Problem
+  
+```
+DICOM 파일 축 정보 오기입으로 인한 STL-CT 간 정합 오류
+```
+
+<br>
+
+## - Solution
+
+```
+사람이 직접 기입하며 발생하는 실수에 상관없이 Direction을 초기화하여 STL-CT 간 차이가 발생하지 않도록 해결.
+```
+
+<br>
 
       
