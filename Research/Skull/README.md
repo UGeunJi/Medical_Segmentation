@@ -10,21 +10,37 @@
 
 ## - Process
 
-
 #### Skull Segmentation &#10145; Skull Implant
 
-
-1. DB 준비 (NC)
-2. pre-processing
-   - Image Enhancement
+1. DB 준비
+   - CQ500 (Open)
+   - IMPACT (Open)
+   - Samsung (Private)
+     
+2. Pre-processing
+   - dcm to nii
+   - Image Crop to skull
+   - Crop Background
+   - HU Clipping
+   - Z-score Normalization
+     
 3. Segmentation
+   - 5-fold Cross-Validation (Select Best DICE Score Model)
+  
+4. Post-processing
+   - Mask
+      - Isotrophic Resampling
+      - Connected Component Analysis
+      - Gaussian Blur
+   - Mesh (After Marching-cube)
+      - HC Laplacian Smoothing
+      - Quadric Decimation
+      - Hole Closing
+      - Remeshing
+
+5. 결손 Subject 생성 - [생성 코드](https://github.com/Jianningli/SciData) (Segmentation 전 부위 다 하면 수행 예정)
+6. Imaplant Learning
    - Develop
-     - pre-training
-
-4. 결손 Subject 생성 - [생성 코드](https://github.com/Jianningli/SciData)
-5. Imaplant Learning
-   - Develop 
-
 
 <br>
    
@@ -38,17 +54,16 @@
 #### Open DB
 - CQ500 (50명)
 - IMPACT (60명)
-- Totalsegmentor v2 (63명)
 
 #### Private DB
-- 삼성병원 (109명)
+- 삼성병원 (약 400명)
 
 <br>
 
 ### - Model
 
 ```
-U-Net / nnU-Net Version2
+3D nnU-Net Version2
 ```
 
 <br>
@@ -259,7 +274,7 @@ Pre-training 기법 활용
 
 - Ordered Data Inference
 
-| Train Dataset | nnUNet V2 |
+| Train Dataset | DICE |
 | --- | --- |
 |삼성서울 | 0.9330 |
 | CQ500 | 0.9293 |
@@ -279,3 +294,135 @@ Pre-training 기법 활용
 
 <img width="626" height="596" alt="image" src="https://github.com/user-attachments/assets/8e9bacb1-e5df-4e9c-b417-aafcc8b66da9" />
 
+<br>
+
+---
+
+<br>
+
+- 최종 결과 정리
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" align="center"></th>
+      <th rowspan="2" align="center">Method</th>
+      <th rowspan="2" align="center">Training Dataset</th>
+      <th rowspan="2" align="center">Subjects</th>
+      <th rowspan="2" align="center">Validation</th>
+      <th colspan="3" align="center">Test</th>
+      <th rowspan="2" align="center">Test</th>
+    </tr>
+    <tr>
+      <th align="center">Combined Dataset 1</th>
+      <th align="center">Added Samsung</th>
+      <th align="center">Ordered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="6" align="center">Experiments</td>
+      <td rowspan="5" align="center">Head Crop</td>
+      <td align="center">CQ500</td>
+      <td align="center">45 / 5</td>
+      <td align="center"><u>0.9761</u></td>
+      <td align="center">0.9525</td>
+      <td align="center">0.9154</td>
+      <td align="center">0.9171</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td align="center">IMPACT</td>
+      <td align="center">54 / 6</td>
+      <td align="center"><b>0.9876</b></td>
+      <td align="center">0.9532</td>
+      <td align="center">0.9328</td>
+      <td align="center">0.9328</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td align="center">Samsung</td>
+      <td align="center">99 / 10</td>
+      <td align="center">0.8151</td>
+      <td align="center">0.9065</td>
+      <td align="center"><u>0.9678</u></td>
+      <td align="center"><b>0.9619</b></td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td align="center">Combined Dataset 1</td>
+      <td align="center">132 / 15</td>
+      <td align="center">0.9641</td>
+      <td align="center"><b>0.9748</b></td>
+      <td align="center">0.9571</td>
+      <td align="center">0.9432</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td align="center">Combined Dataset 2</td>
+      <td align="center">350 / 27</td>
+      <td align="center">0.9688</td>
+      <td align="center">0.9736</td>
+      <td align="center"><b>0.9729</b></td>
+      <td align="center"><u>0.9599</u></td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td align="center">Pre-training</td>
+      <td align="center">Combined Dataset 1</td>
+      <td align="center">147</td>
+      <td align="center">0.9756</td>
+      <td align="center"><u>0.9744</u></td>
+      <td align="center">0.9634</td>
+      <td align="center">0.9550</td>
+      <td align="center">-</td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center">Paper</td>
+      <td align="center">Dot et al. (2022)</td>
+      <td align="center">Private</td>
+      <td align="center">300 / 153</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">0.9622</td>
+    </tr>
+    <tr>
+      <td align="center">Steybe et al. (2022)</td>
+      <td align="center">Private</td>
+      <td align="center">15 / 5</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">-</td>
+      <td align="center">0.94</td>
+    </tr>
+  </tbody>
+</table>
+
+```
+Combined Dataset2로 학습한 모델이 대체적으로 높은 DICE Score를 유지할 뿐 아니라 Generalizaibility 측면에서도 우수한 것으로 분석되어 해당 모델을 서비스화 함.
+```
+
+<br>
+
+- Visualization
+
+<img width="815" height="411" alt="image" src="https://github.com/user-attachments/assets/4d88bdbe-6382-409d-8c7f-48e8d732087e" />
+
+<br>
+
+---
+
+<br>
+
+## Final Skull Auto Segmentation Pipeline
+
+<img width="884" height="401" alt="image" src="https://github.com/user-attachments/assets/a6c5a98d-37ad-4d59-a9a6-e6ed9ad510ae" />
+
+<br>
+
+- Post-Processing Before/After Visualization
+
+<img width="847" height="286" alt="image" src="https://github.com/user-attachments/assets/185628b6-9a0a-4162-aa9f-ccdcd55b9734" />
