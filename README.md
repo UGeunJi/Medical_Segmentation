@@ -1,3 +1,6 @@
+<img width="979" height="718" alt="image" src="https://github.com/user-attachments/assets/c7359d77-2c6a-4e00-83b6-c88fcba50287" />
+
+
 # Segmentation
 
 ## Scapula / Humerus Segmentation
