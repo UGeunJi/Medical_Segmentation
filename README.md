@@ -37,4 +37,4 @@
 
 #### U-Net 기반 모델 - 개발 완료
 
-[Research Page](https://github.com/UGeunJi/Medical_Segmentation/tree/main/Research/Scapula_Humerus)
+[Research Page](https://github.com/UGeunJi/Medical_Segmentation/tree/main/Research/Scapula_Humerus/Scapula_Friedman_Line)
