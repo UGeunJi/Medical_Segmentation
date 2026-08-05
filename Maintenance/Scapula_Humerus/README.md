@@ -128,4 +128,20 @@ DICOM 파일 축 정보 오기입으로 인한 STL-CT 간 정합 오류
 
 <br>
 
-      
+# - 8/5 Bilateral CT
+
+## - Problem
+
+```
+Unilateral CT만 분할 가능함. Bilateral CT가 입력되면 분할하지 못하고 오류 메시지 작성됨.
+```
+
+## - Solution
+
+```
+모델을 새로 학습시키지 않고 DICOM data로부터 정보를 얻어내어 데이터 전처리로 수행함.
+```
+
+<br>
+
+<img width="420" height="306" alt="image" src="https://github.com/user-attachments/assets/4c454f5d-84be-4dfc-97ea-955b1dfc668f" />
