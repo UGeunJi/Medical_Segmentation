@@ -10,3 +10,4 @@
 
 - [7/1 Axis Reverse by Affine Matrix](https://github.com/UGeunJi/Medical_Segmentation/blob/main/Maintenance/Scapula_Humerus/README.md#--71-axis-reverse-by-affine-matrix)
 
+- [8/4 Bilateral CT](https://github.com/UGeunJi/Medical_Segmentation/blob/main/Maintenance/Scapula_Humerus/README.md#--85-Bilateral-CT)
