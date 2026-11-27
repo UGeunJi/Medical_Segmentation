@@ -1,0 +1,4 @@
+case,spacing_mm,fov_mm,tibia_mL,tibia_n_comp,tibia_extra_mL,fibula_mL,fibula_n_comp,fibula_extra_mL,talus_mL,talus_n_comp,talus_extra_mL,calcaneus_mL,calcaneus_n_comp,calcaneus_extra_mL,tarsals_mL,tarsals_n_comp,tarsals_extra_mL,metatarsals_mL,metatarsals_n_comp,metatarsals_extra_mL,phalanges_mL,phalanges_n_comp,phalanges_extra_mL,femur_mL,femur_n_comp,femur_extra_mL
+Clinical_01,0.598x0.598x0.625,306x306x543,239.2102,2,8.6876,46.4567,1,0.0000,29.5532,1,0.0000,57.8215,1,0.0000,31.5100,1,0.0000,36.3819,2,14.1198,11.5610,5,6.1352,130.9591,1,0.0000
+Clinical_02,0.562x0.562x0.625,288x288x523,223.3172,11,5.5490,42.8236,3,0.0051,29.4226,2,2.1638,57.2759,2,10.1149,40.0208,3,9.7853,44.0880,9,21.4909,14.4944,6,9.7097,128.6162,2,0.0034
+Clinical_03,0.557x0.557x0.625,285x285x563,352.6196,3,0.3565,62.8459,1,0.0000,42.2685,10,1.8252,68.5803,1,0.0000,41.7264,3,11.6976,46.0606,6,15.7270,15.7781,5,8.7310,182.2192,1,0.0000
